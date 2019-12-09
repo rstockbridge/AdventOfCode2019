@@ -1,16 +1,16 @@
 interface Tree<T> {
     val data: T
-    val children: List<Tree<T>>
+    val children: List<MutableTree<T>>
 }
 
 fun <T> Tree<T>.isLeaf() = children.isEmpty()
 
 interface MutableTree<T> : Tree<T> {
-    fun addChild(child: Tree<T>)
+    fun addChild(child: MutableTree<T>)
 }
 
-data class MutableTreeImpl<T>(override val data: T, override var children: MutableList<Tree<T>>) : MutableTree<T> {
-    override fun addChild(child: Tree<T>) {
+data class MutableTreeImpl<T>(override val data: T, override var children: MutableList<MutableTree<T>>) : MutableTree<T> {
+    override fun addChild(child: MutableTree<T>) {
         children.add(child)
     }
 }
